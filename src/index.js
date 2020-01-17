@@ -58,8 +58,10 @@ export const isZalgo = (string, threshold = DEFAULT_THRESHOLD) => {
 */
 export const clean = (string, threshold = DEFAULT_THRESHOLD) => {
 	let cleaned = "";
+	let hadZalgos = false;
 	for (const word of decompose(string).split(/(\s+)/)) {
 		if (isZalgo(word, threshold)) {
+			hadZalgos = true;
 			for (const character of word) {
 				if (!categories.test(character)) {
 					cleaned += character;
@@ -70,6 +72,7 @@ export const clean = (string, threshold = DEFAULT_THRESHOLD) => {
 			cleaned += word;
 		}
 	}
-	return compose(cleaned);
+	if (hadZalgos) return compose(cleaned);
+	return string
 };
 export default clean;
