@@ -48,7 +48,7 @@ test("some diacritics", () => {
 		1 / 6,
 		2 / 9
 	]);
-	expectClean(text, compose(text));
+	expectClean(text, text);
 	expectNoZalgo(text);
 	expectClean(text, "having this text display normally, since some languages actually use these symbols", 0);
 });
